@@ -11,6 +11,7 @@ pipeline {
     stage ('Check resource drift') {
       steps {
         sh 'oc diff -k config | tee drift-report.txt'
+        //Will check file is empty or not- if empty it will return 1-if not return 0
         sh '! test -s drift-report.txt'
       }
     }
